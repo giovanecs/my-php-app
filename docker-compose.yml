@@ -1,0 +1,30 @@
+version: "3.7"
+
+services:
+  php:
+    container_name: my-app
+    build:
+      context: .
+      dockerfile: ./dockerfile
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./site:/var/www/html
+    networks:
+      - apache-net
+
+  mysql:
+    container_name: my-app-db
+    image: mysql:8
+    environment:
+      MYSQL_DATABASE: "my_app"
+      MYSQL_ROOT_PASSWORD: "123"
+    ports:
+      - "3306:3306"
+    networks:
+      - apache-net
+
+networks:
+  apache-net:
+    driver: bridge
