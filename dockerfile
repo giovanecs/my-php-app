@@ -15,4 +15,6 @@ RUN docker-php-ext-configure gd --enable-gd --with-webp --with-jpeg \
 
 RUN rm -rf /var/lib/apt/lists/*
 
+COPY ./conf/php/php.ini /usr/local/etc/php/php.ini
+
 EXPOSE 80
