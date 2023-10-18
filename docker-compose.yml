@@ -13,6 +13,11 @@ services:
       - ./site:/var/www/html
     networks:
       - apache-net
+    deploy:
+      resources:
+        limits:
+          cpus: '0.25'
+          memory: 256M
 
   mysql:
     container_name: my-app-db
@@ -24,6 +29,11 @@ services:
       - "3306:3306"
     networks:
       - apache-net
+    deploy:
+      resources:
+        limits:
+          cpus: '0.25'
+          memory: 512M
 
 networks:
   apache-net:
